@@ -1,0 +1,11 @@
+{
+  "name": "850 Design and Fabrication",
+  "short_name": "850 D&F",
+  "icons": [
+    { "src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#090A0B",
+  "background_color": "#090A0B",
+  "display": "standalone"
+}

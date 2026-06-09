@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>850 Design and Fabrication | Custom Work. Clean Finish.</title>
+  <meta name="description" content="Custom laser engraving, signage, woodwork, metal fabrication, and one-off specialty builds in Northwest Florida. Get a free quote.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --black:       #090A0B;
+      --black-mid:   #0f1012;
+      --black-card:  #111315;
+      --gold:        #AB8437;
+      --gold-lt:     #C9A456;
+      --gold-dim:    rgba(171,132,55,.12);
+      --gold-border: rgba(171,132,55,.22);
+      --white:       #F8F7F4;
+      --gray:        #9a9a9a;
+      --gray-dim:    #5a5a5a;
+
+      --display: 'Bebas Neue', sans-serif;
+      --body:    'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ═══════════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════════ */
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+
+    .label {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .label::before, .label::after {
+      content: '';
+      flex: 0 0 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .label::after { display: none; }
+    .label span {
+      font-size: .6875rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .label--center::after { display: block; }
+
+    .heading {
+      font-family: var(--display);
+      line-height: .92;
+      letter-spacing: .01em;
+      color: var(--white);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--body);
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .9375rem 1.875rem;
+      cursor: pointer;
+      border: none;
+      transition: background .2s, transform .15s, border-color .2s, color .2s;
+    }
+    .btn svg { flex-shrink: 0; transition: transform .2s; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn--gold {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn--gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--gold-border);
+    }
+    .btn--outline:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    /* Reveal */
+    .r {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .r.on { opacity: 1; transform: none; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .35s, border-color .35s, backdrop-filter .35s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.stuck {
+      background: rgba(9,10,11,.9);
+      backdrop-filter: blur(14px);
+      border-color: var(--gold-border);
+    }
+
+    .nav-logo img { height: 38px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links .nav-cta {
+      color: var(--black);
+      background: var(--gold);
+      padding: .55rem 1.25rem;
+      font-weight: 600;
+    }
+    .nav-links .nav-cta:hover { background: var(--gold-lt); }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--white);
+      transition: .3s;
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 9rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(171,132,55,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(171,132,55,.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 90% at 40% 40%, black 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* Bottom vignette */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 280px;
+      background: linear-gradient(transparent, var(--black));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-tag-line { width: 36px; height: 1px; background: var(--gold); }
+    .hero-tag span {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero-h1 {
+      font-family: var(--display);
+      font-size: clamp(5rem, 13vw, 12rem);
+      line-height: .88;
+      letter-spacing: -.01em;
+      color: var(--white);
+      margin-bottom: 2.25rem;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-h1 .thin {
+      font-family: var(--body);
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      color: var(--gray);
+      letter-spacing: .04em;
+      display: block;
+      margin-bottom: .25rem;
+    }
+
+    .hero-body {
+      max-width: 480px;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--gray);
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    .hero-scroll {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .625rem;
+    }
+    .hero-scroll span {
+      font-size: .6rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .scroll-bar {
+      width: 1px;
+      height: 56px;
+      background: linear-gradient(var(--gold), transparent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{opacity:.35} 50%{opacity:1}
+    }
+
+    /* ═══════════════════════════════════════════
+       TICKER
+    ═══════════════════════════════════════════ */
+    .ticker {
+      background: var(--gold);
+      overflow: hidden;
+      padding: .875rem 0;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: roll 28s linear infinite;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 2rem;
+      font-family: var(--display);
+      font-size: 1.0625rem;
+      letter-spacing: .12em;
+      color: var(--black);
+    }
+    .ticker-dot {
+      width: 5px; height: 5px;
+      background: var(--black);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes roll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       CAPABILITIES
+    ═══════════════════════════════════════════ */
+    #capabilities {
+      background: var(--black-mid);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 6rem 0;
+    }
+    #capabilities .wrap { padding: 0 2rem; }
+
+    .cap-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 4.5rem;
+    }
+    .cap-header-desc {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--gray);
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--gold-border);
+      background: var(--gold-border); /* acts as gap color */
+      gap: 1px;
+    }
+
+    .cap-card {
+      background: var(--black-mid);
+      padding: 2.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+    .cap-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s;
+    }
+    .cap-card:hover { background: rgba(171,132,55,.04); }
+    .cap-card:hover::after { transform: scaleX(1); }
+
+    .cap-n {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+    }
+
+    .cap-icon {
+      width: 36px; height: 36px;
+      margin-bottom: 1.5rem;
+      stroke: var(--gold);
+    }
+
+    .cap-title {
+      font-family: var(--display);
+      font-size: 1.875rem;
+      letter-spacing: .03em;
+      color: var(--white);
+      margin-bottom: .625rem;
+    }
+    .cap-desc {
+      font-size: .9rem;
+      line-height: 1.72;
+      color: var(--gray);
+    }
+
+    /* ═══════════════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════════════ */
+    #stats {
+      background: var(--black-card);
+      padding: 0;
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--gold-border);
+      gap: 1px;
+    }
+    .stat {
+      background: var(--black-card);
+      padding: 3.25rem 2.5rem;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--display);
+      font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .625rem;
+    }
+    .stat-lbl {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+
+    /* ═══════════════════════════════════════════
+       PROCESS
+    ═══════════════════════════════════════════ */
+    #process {
+      background: var(--black);
+      padding: 7rem 0;
+    }
+    #process .wrap { padding: 0 2rem; }
+
+    .process-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 3rem;
+      margin-bottom: 5rem;
+    }
+    .process-top-desc {
+      max-width: 380px;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--gray);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 1.4375rem;
+      left: 6%;
+      right: 6%;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    .step {
+      padding: 0 1.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step-dot {
+      width: 2.875rem;
+      height: 2.875rem;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--gold);
+      background: var(--black);
+      margin-bottom: 2.25rem;
+    }
+    .step-title {
+      font-family: var(--display);
+      font-size: 1.625rem;
+      letter-spacing: .03em;
+      color: var(--white);
+      margin-bottom: .625rem;
+    }
+    .step-desc {
+      font-size: .875rem;
+      line-height: 1.72;
+      color: var(--gray);
+    }
+
+    /* ═══════════════════════════════════════════
+       QUOTE CTA BAND
+    ═══════════════════════════════════════════ */
+    #cta {
+      padding: 8rem 2rem;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(171,132,55,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(171,132,55,.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+    .cta-h {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      line-height: .9;
+      letter-spacing: .01em;
+      color: var(--white);
+      margin: 1.25rem 0 1.5rem;
+    }
+    .cta-sub {
+      font-size: 1.0625rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 460px;
+      margin: 0 auto 2.75rem;
+    }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* ═══════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════ */
+    #contact {
+      background: var(--black-mid);
+      border-top: 1px solid var(--gold-border);
+      padding: 7rem 0;
+    }
+    #contact .wrap { padding: 0 2rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 7rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2.75rem;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-icon {
+      width: 18px; height: 18px;
+      stroke: var(--gold);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .info-body { font-size: .9375rem; color: var(--gray); line-height: 1.5; }
+    .info-body strong {
+      display: block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: .2rem;
+    }
+    .info-body a { transition: color .2s; }
+    .info-body a:hover { color: var(--gold); }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+    }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; }
+
+    .fg { display: flex; flex-direction: column; gap: .375rem; }
+    .fg label {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray-dim);
+    }
+    .fg input,
+    .fg select,
+    .fg textarea {
+      background: var(--black-card);
+      border: 1px solid var(--gold-border);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: .9375rem;
+      padding: .875rem 1rem;
+      outline: none;
+      width: 100%;
+      transition: border-color .2s;
+      appearance: none;
+      border-radius: 0;
+    }
+    .fg input::placeholder,
+    .fg textarea::placeholder { color: var(--gray-dim); }
+    .fg input:focus,
+    .fg select:focus,
+    .fg textarea:focus { border-color: var(--gold); }
+    .fg select option { background: var(--black-mid); }
+    .fg textarea { min-height: 148px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      margin-top: .375rem;
+      justify-content: center;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      background: var(--black-card);
+      border-top: 1px solid var(--gold-border);
+      padding: 3.5rem 2rem 2rem;
+    }
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .footer-brand img { height: 34px; width: auto; margin-bottom: 1rem; }
+    .footer-tag {
+      font-size: .8125rem;
+      color: var(--gray-dim);
+      max-width: 210px;
+      line-height: 1.65;
+    }
+
+    .footer-cols { display: flex; gap: 5rem; }
+    .footer-col h4 {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col ul a { font-size: .875rem; color: var(--gray-dim); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      gap: 2rem;
+    }
+    .footer-copy { font-size: .8rem; color: var(--gray-dim); }
+    .footer-copy strong { color: var(--gray); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV OVERLAY
+    ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--black);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        z-index: 998;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.5rem; color: var(--white) !important; }
+      .nav-links .nav-cta { padding: .875rem 2.5rem !important; }
+      .nav-burger { display: flex; }
+
+      #hero { padding: 7rem 1.5rem 4rem; justify-content: center; }
+      .hero-scroll { display: none; }
+
+      .cap-header { grid-template-columns: 1fr; gap: 2rem; }
+      .cap-grid { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .steps::before { display: none; }
+      .process-top { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .row-2 { grid-template-columns: 1fr; }
+
+      .footer-top { flex-direction: column; }
+      .footer-cols { flex-direction: column; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .step { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ────────────────────────── NAV ────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="assets/logo-header.png" alt="850 Design and Fabrication">
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#capabilities">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+  <div class="nav-burger" id="burger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ────────────────────────── HERO ────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag r">
+      <div class="hero-tag-line"></div>
+      <span>850 Design &amp; Fabrication — Northwest Florida</span>
+    </div>
+
+    <h1 class="hero-h1 r">
+      <span class="thin">Custom Work.</span>
+      <em>Clean</em><br>Finish.
+    </h1>
+
+    <p class="hero-body r">
+      Laser engraving, custom signage, woodwork, metal fabrication, and one-off specialty builds. We turn what's in your head into something you can hold.
+    </p>
+
+    <div class="hero-actions r">
+      <a href="#contact" class="btn btn--gold">
+        Get a Free Quote
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#capabilities" class="btn btn--outline">See Our Work</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ────────────────────────── TICKER ────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Laser Engraving<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Signage<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Metal Fabrication<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Woodwork<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Parts<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Prototyping<span class="ticker-dot"></span></span>
+    <span class="ticker-item">One-Off Projects<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Laser Engraving<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Signage<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Metal Fabrication<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Woodwork<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Custom Parts<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Prototyping<span class="ticker-dot"></span></span>
+    <span class="ticker-item">One-Off Projects<span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- ────────────────────────── CAPABILITIES ────────────────────────── -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="cap-header">
+      <div>
+        <div class="label r"><span>Capabilities</span></div>
+        <h2 class="heading r" style="font-size:clamp(3rem,6vw,5.25rem)">What<br>We Build</h2>
+      </div>
+      <p class="cap-header-desc r">
+        Every project starts with a clear vision and ends with a clean result. Whether it's a single custom piece or a repeat production run, we have the tools, skills, and attention to make it happen right.
+      </p>
+    </div>
+
+    <div class="cap-grid">
+
+      <div class="cap-card r">
+        <p class="cap-n">01</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        </svg>
+        <h3 class="cap-title">Laser Engraving</h3>
+        <p class="cap-desc">Precision-etched detail on wood, metal, leather, glass, and acrylic. Personal gifts to commercial production runs—all clean, all exact.</p>
+      </div>
+
+      <div class="cap-card r">
+        <p class="cap-n">02</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <h3 class="cap-title">Custom Signage</h3>
+        <p class="cap-desc">Interior, exterior, dimensional, and illuminated. Signage that tells people you take your brand seriously before they walk through the door.</p>
+      </div>
+
+      <div class="cap-card r">
+        <p class="cap-n">03</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h3 class="cap-title">Woodwork</h3>
+        <p class="cap-desc">Custom wood builds with tight joinery and solid design sense. Furniture, display fixtures, cabinetry, and architectural pieces done properly.</p>
+      </div>
+
+      <div class="cap-card r">
+        <p class="cap-n">04</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+        <h3 class="cap-title">Metal Fabrication</h3>
+        <p class="cap-desc">Cut, bent, welded, and finished to spec. Structural brackets, custom hardware, decorative elements—whatever the project calls for.</p>
+      </div>
+
+      <div class="cap-card r">
+        <p class="cap-n">05</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+        </svg>
+        <h3 class="cap-title">Custom Parts</h3>
+        <p class="cap-desc">Replacement parts, mounts, brackets, and hardware that don't exist off the shelf. Designed and built to your exact dimensions and load requirements.</p>
+      </div>
+
+      <div class="cap-card r">
+        <p class="cap-n">06</p>
+        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+        </svg>
+        <h3 class="cap-title">Specialty Builds</h3>
+        <p class="cap-desc">One-off projects that don't fit a category. Concept builds, prototypes, and anything that needs a problem-solver, not just a fabricator.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── STATS ────────────────────────── -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat r">
+      <div class="stat-val">100%</div>
+      <div class="stat-lbl">Custom — Nothing Off the Shelf</div>
+    </div>
+    <div class="stat r">
+      <div class="stat-val">Local</div>
+      <div class="stat-lbl">Northwest Florida</div>
+    </div>
+    <div class="stat r">
+      <div class="stat-val">Fast</div>
+      <div class="stat-lbl">Real Turnaround Times</div>
+    </div>
+    <div class="stat r">
+      <div class="stat-val">Zero</div>
+      <div class="stat-lbl">Cookie-Cutter Work</div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────────────────── PROCESS ────────────────────────── -->
+<section id="process">
+  <div class="wrap">
+    <div class="process-top">
+      <div>
+        <div class="label r"><span>How It Works</span></div>
+        <h2 class="heading r" style="font-size:clamp(3rem,6vw,5.25rem)">The<br>Process</h2>
+      </div>
+      <p class="process-top-desc r">
+        Simple, collaborative, and transparent. We keep you in the loop from the first conversation to the moment you pick it up.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step r">
+        <div class="step-dot">01</div>
+        <h3 class="step-title">Bring Your Idea</h3>
+        <p class="step-desc">A sketch, a photo, a rough description—whatever you've got is enough to start. No idea is too raw.</p>
+      </div>
+      <div class="step r">
+        <div class="step-dot">02</div>
+        <h3 class="step-title">We Design It</h3>
+        <p class="step-desc">We work up a design, spec the materials, and send a clear quote. Nothing moves until you're happy with it.</p>
+      </div>
+      <div class="step r">
+        <div class="step-dot">03</div>
+        <h3 class="step-title">We Build It</h3>
+        <p class="step-desc">Production starts once you approve. We keep you updated and don't cut corners to hit a deadline.</p>
+      </div>
+      <div class="step r">
+        <div class="step-dot">04</div>
+        <h3 class="step-title">You Have It</h3>
+        <p class="step-desc">Pickup or delivery. A finished product that's built right, on time, exactly as we discussed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── CTA BAND ────────────────────────── -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="label label--center r" style="justify-content:center"><span>Let's Work Together</span></div>
+    <h2 class="cta-h r">Ready to<br>Build<br>Something?</h2>
+    <p class="cta-sub r">Tell us what you need. We'll get back to you fast with a straight answer and a fair quote.</p>
+    <div class="cta-btns r">
+      <a href="#contact" class="btn btn--gold">
+        Get a Free Quote
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── CONTACT ────────────────────────── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <!-- Left: info -->
+      <div>
+        <div class="label r"><span>Get In Touch</span></div>
+        <h2 class="heading r" style="font-size:clamp(2.5rem,5vw,4.25rem)">Let's Talk<br>About Your<br>Project</h2>
+
+        <div class="contact-info r">
+          <div class="info-row">
+            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .12h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.07z"/>
+            </svg>
+            <div class="info-body">
+              <strong>Phone</strong>
+              <a href="tel:8505550000">(850) 555-0000</a>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <div class="info-body">
+              <strong>Email</strong>
+              <a href="mailto:hello@850fab.com">hello@850fab.com</a>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div class="info-body">
+              <strong>Location</strong>
+              Northwest Florida
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="r">
+        <form id="quoteForm" novalidate>
+          <div class="row-2">
+            <div class="fg">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="fg">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="(850) 555-0000">
+            </div>
+          </div>
+          <div class="fg">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="fg">
+            <label for="service">Service</label>
+            <select id="service" name="service">
+              <option value="" disabled selected>What do you need?</option>
+              <option>Laser Engraving</option>
+              <option>Custom Signage</option>
+              <option>Woodwork</option>
+              <option>Metal Fabrication</option>
+              <option>Custom Parts</option>
+              <option>Specialty Build</option>
+              <option>Not Sure / Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="msg">Project Details</label>
+            <textarea id="msg" name="message" placeholder="Describe what you need — dimensions, materials, quantity, deadline, or just an idea to start with."></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold form-submit">
+            Send Project Request
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────────── FOOTER ────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo-footer.png" alt="850 Design and Fabrication">
+        <p class="footer-tag">Custom Work. Clean Finish.<br>Northwest Florida.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#capabilities">Laser Engraving</a></li>
+            <li><a href="#capabilities">Custom Signage</a></li>
+            <li><a href="#capabilities">Woodwork</a></li>
+            <li><a href="#capabilities">Metal Fabrication</a></li>
+            <li><a href="#capabilities">Custom Parts</a></li>
+            <li><a href="#capabilities">Specialty Builds</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#process">How It Works</a></li>
+            <li><a href="#contact">Get a Quote</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 <strong>850 Design and Fabrication</strong>. All rights reserved.</p>
+      <p class="footer-copy">Built With Precision.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Sticky nav ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('stuck', window.scrollY > 24);
+  }, { passive: true });
+
+  /* ── Mobile burger ── */
+  const burger   = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  burger.addEventListener('keydown', e => { if (e.key === 'Enter') navLinks.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  /* ── Reveal on scroll ── */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('on'), i * 75);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.r').forEach(el => revealObserver.observe(el));
+
+  /* ── Form ── */
+  const form = document.getElementById('quoteForm');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const btn = form.querySelector('.form-submit');
+    const orig = btn.innerHTML;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    /* Replace with your actual endpoint / Formspree / Railway API */
+    await new Promise(r => setTimeout(r, 1000));
+    btn.textContent = 'Sent ✓  We\'ll be in touch.';
+    btn.style.background = '#2d6a40';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+      btn.disabled = false;
+      form.reset();
+    }, 4000);
+  });
+</script>
+</body>
+</html>

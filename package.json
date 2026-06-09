@@ -1,0 +1,15 @@
+{
+  "name": "850-design-fabrication",
+  "version": "1.0.0",
+  "description": "850 Design and Fabrication — website",
+  "scripts": {
+    "start": "serve . -p $PORT",
+    "dev": "serve . -p 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
