@@ -1121,20 +1121,48 @@
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    const btn = form.querySelector('.form-submit');
+
+    const btn  = form.querySelector('.form-submit');
     const orig = btn.innerHTML;
     btn.textContent = 'Sending…';
     btn.disabled = true;
-    /* Replace with your actual endpoint / Formspree / Railway API */
-    await new Promise(r => setTimeout(r, 1000));
-    btn.textContent = 'Sent ✓  We\'ll be in touch.';
-    btn.style.background = '#2d6a40';
-    setTimeout(() => {
-      btn.innerHTML = orig;
-      btn.style.background = '';
-      btn.disabled = false;
-      form.reset();
-    }, 4000);
+
+    try {
+      const payload = Object.fromEntries(new FormData(form));
+      const res     = await fetch('/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.ok) {
+        btn.textContent = 'Sent. We will be in touch.';
+        btn.style.background = '#2d6a40';
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = '';
+          btn.disabled = false;
+          form.reset();
+        }, 4500);
+      } else {
+        btn.textContent = 'Something went wrong. Call or email us directly.';
+        btn.style.background = '#7a1f1f';
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 5000);
+      }
+    } catch {
+      btn.textContent = 'Connection error. Call or email us directly.';
+      btn.style.background = '#7a1f1f';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 5000);
+    }
   });
 </script>
 </body>
