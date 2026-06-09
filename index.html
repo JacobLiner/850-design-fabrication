@@ -363,11 +363,18 @@
 
     .cap-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       border: 1px solid var(--gold-border);
       background: var(--gold-border); /* acts as gap color */
       gap: 1px;
     }
+
+    /* Top row: 3 cards × 2 columns each = full width */
+    .cap-card { grid-column: span 2; }
+
+    /* Bottom row: 2 cards × 3 columns each = full width, slightly wider */
+    .cap-card:nth-child(4),
+    .cap-card:nth-child(5) { grid-column: span 3; }
 
     .cap-card {
       background: var(--black-mid);
@@ -729,6 +736,9 @@
 
       .cap-header { grid-template-columns: 1fr; gap: 2rem; }
       .cap-grid { grid-template-columns: 1fr; }
+      .cap-card,
+      .cap-card:nth-child(4),
+      .cap-card:nth-child(5) { grid-column: span 1; }
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
