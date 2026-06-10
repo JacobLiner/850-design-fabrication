@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>850 Design and Fabrication | Custom Work. Clean Finish.</title>
-  <meta name="description" content="Custom laser engraving, signage, woodwork, custom parts, and one-off specialty builds in Northwest Florida. Get a free quote.">
+  <meta name="description" content="Custom laser engraving, signage, woodwork, and one-off specialty builds in Northwest Florida. Get a free quote.">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/favicon-180.png">
@@ -363,18 +363,14 @@
 
     .cap-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       border: 1px solid var(--gold-border);
       background: var(--gold-border); /* acts as gap color */
       gap: 1px;
     }
 
-    /* Top row: 3 cards × 2 columns each = full width */
-    .cap-card { grid-column: span 2; }
-
-    /* Bottom row: 2 cards × 3 columns each = full width, slightly wider */
-    .cap-card:nth-child(4),
-    .cap-card:nth-child(5) { grid-column: span 3; }
+    /* 2×2 grid — all four cards equal width */
+    .cap-card { grid-column: span 1; }
 
     .cap-card {
       background: var(--black-mid);
@@ -736,9 +732,7 @@
 
       .cap-header { grid-template-columns: 1fr; gap: 2rem; }
       .cap-grid { grid-template-columns: 1fr; }
-      .cap-card,
-      .cap-card:nth-child(4),
-      .cap-card:nth-child(5) { grid-column: span 1; }
+      .cap-card { grid-column: span 1; }
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
@@ -796,7 +790,7 @@
     </h1>
 
     <p class="hero-body r">
-      Laser engraving, custom signage, woodwork, custom parts, and one-off specialty builds. We turn what's in your head into something you can hold.
+      Laser engraving, custom signage, woodwork, and one-off specialty builds. We turn what's in your head into something you can hold.
     </p>
 
     <div class="hero-actions r">
@@ -822,7 +816,7 @@
     <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
     <span class="ticker-item">Woodwork<span class="ticker-dot"></span></span>
     <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
-    <span class="ticker-item">Custom Parts<span class="ticker-dot"></span></span>
+    <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
     <span class="ticker-item">Prototyping<span class="ticker-dot"></span></span>
     <span class="ticker-item">One-Off Projects<span class="ticker-dot"></span></span>
     <span class="ticker-item">Laser Engraving<span class="ticker-dot"></span></span>
@@ -830,7 +824,6 @@
     <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
     <span class="ticker-item">Woodwork<span class="ticker-dot"></span></span>
     <span class="ticker-item">Specialty Builds<span class="ticker-dot"></span></span>
-    <span class="ticker-item">Custom Parts<span class="ticker-dot"></span></span>
     <span class="ticker-item">Prototyping<span class="ticker-dot"></span></span>
     <span class="ticker-item">One-Off Projects<span class="ticker-dot"></span></span>
   </div>
@@ -880,15 +873,6 @@
 
       <div class="cap-card r">
         <p class="cap-n">04</p>
-        <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-        </svg>
-        <h3 class="cap-title">Custom Parts</h3>
-        <p class="cap-desc">Replacement parts, mounts, brackets, and hardware that don't exist off the shelf. Designed and built to your exact dimensions and load requirements.</p>
-      </div>
-
-      <div class="cap-card r">
-        <p class="cap-n">05</p>
         <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
         </svg>
@@ -1042,7 +1026,6 @@
               <option>Laser Engraving</option>
               <option>Custom Signage</option>
               <option>Woodwork</option>
-              <option>Custom Parts</option>
               <option>Specialty Build</option>
               <option>Not Sure / Other</option>
             </select>
@@ -1078,7 +1061,6 @@
             <li><a href="#capabilities">Laser Engraving</a></li>
             <li><a href="#capabilities">Custom Signage</a></li>
             <li><a href="#capabilities">Woodwork</a></li>
-            <li><a href="#capabilities">Custom Parts</a></li>
             <li><a href="#capabilities">Specialty Builds</a></li>
           </ul>
         </div>
